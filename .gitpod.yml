@@ -1,0 +1,25 @@
+image:
+  file: Dockerfile.gitpod
+
+# List the start up tasks. Learn more https://www.gitpod.io/docs/config-start-tasks/
+tasks:
+  - name: phx
+    init: mix deps.get && mix compile && mix ecto.setup && npm install --prefix ./assets # runs during prebuild
+    command: mix test
+
+# List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
+ports:
+  - name: phoenix
+    port: 4000
+    onOpen: open-preview
+  - name: postgres
+    port: 5432
+    onOpen: ignore
+
+vscode:
+  extensions:
+    - jakebecker.elixir-ls
+    - bradlc.vscode-tailwindcss
+    - phoenixframework.phoenix
+    - animus-coop.vscode-elixir-mix-formatter
+
